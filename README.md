@@ -1,6 +1,6 @@
 # Embedded Programming Course
 
-In which I go through [Miro Samek's Course](https://www.state-machine.com/video-course/) using the EK-TM4C1294XL development board and Code Composer Studio (CCS) with GCC. 
+In which I go through [Miro Samek's Course](https://www.state-machine.com/video-course/) using the EK-TM4C1294XL development board and Code Composer Studio (CCS) with GCC. CCS is currently (July 2021) at v10.3.1.
 
 ## Motivation
 
@@ -35,6 +35,18 @@ Note that the default optimization in CCS will prevent the counter from working 
 
 ### Lesson 2 - Flow of Control
 
+<u>**Copying Projects:**</u> This is slightly more complicated when using CCS than it is with EWARM. The procedure goes something like this, assuming Win10:
+- Navigate to the workspace folder in File Explorer
+- Copy the `lesson1` folder and rename it to `lesson2`
+  - I've been copying the last lesson to the next one, i.e. lesson[x] to lesson[x+1]
+- Open the new folder, then open `.cproject` and `.project` and change all occurrences of e.g. "lesson1" to "lesson2" in each file
+- Save the modified `.cproject` and `.project`
+- With the overall workspace open in CCS, click <u>F</u>ile &rarr; Import... 
+- Select "CCS Projects" &rarr; <u>N</u>ext >
+- Click B<u>r</u>owse... next to Select s<u>e</u>arch-directory:
+- You should already be in the correct folder - if not, navigate to the workspace folder
+- Select the "new" project, then click <u>F</u>inish
+
 ### Lesson 3 - Variables and Pointers
 
 ### Lesson 4 - Blinking the LED
@@ -51,6 +63,10 @@ The required header file `tm4c1294ncpdt.h` was not included with the CCS install
 
 Note that this version of the file has been modified to use only the _AHB_ (Advanced High-Performance Bus) memory locations, which are discussed in Lesson 7. All GPIO ports on the TM4C1294 only uses the AHB, and macros `GPIO_PORTF_AHB_DATA_R` and `GPIO_PORTF_DATA_R` map to the same address in the original header. The TM4C123 has ports that also use the ABP bus, so the two macros map to different base addresses.
 
+If you simply place the header file in the same folder as `main.c`, the compiler will find it easily. I like to put headers in an `include` folder, which requires modifying the project properties to add that folder to the places where the compiler looks for includes:
+
+Project &rarr; Properties &rarr; CCS Build &rarr; GNU Compiler &rarr; Directories
+
 ### Lesson 6 - Bit-Wise Operators in C
 
 (Re)learned something:
@@ -64,4 +80,12 @@ Note that this version of the file has been modified to use only the _AHB_ (Adva
 Note that one million (1000000) can also be written as `1e6`. I'm lazy and this method is easier than counting zeros for large values. Similarly 500000 &rarr; 5e5.
 
 ### Lesson 9 - Modules, Recursion, AAPCS
+
+AAPCS: ARM Application Procedure Call Standard 
+
+Strayed from the video again, to organize source files (*.c) into a `source` folder. `delay.h` was placed in the `include` foler.
+
+It is not necessary to explicitly add new files to the project when using CCS (Eclipse).
+
+### Lesson 10 - Stack Overflow and Other Pitfalls of Functions
 
