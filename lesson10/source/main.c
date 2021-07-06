@@ -57,10 +57,13 @@ unsigned fact(unsigned n) {
     // 0! = 1
     // n! = n*(n-1)! for n > 0
 
+    unsigned foo[10]; // Changing to 100 will result in stack overflow
+    foo[n] = n;
+
     if (n == 0U) {
         return 1U;
     }
     else {
-        return n * fact(n - 1U);
+        return foo[n] * fact(n - 1U);
     }
 }

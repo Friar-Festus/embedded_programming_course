@@ -8,6 +8,17 @@ I have gone through the course previously, up to and including the RTOS section,
 
 Much of the nitty-gritty of e.g. GPIO manipulation is hidden behind vendor-provided hardware abstraction layers. This is generally a good thing, but it's also good to know what to look for when things are not working as expected. And sometimes direct register manipulation is necessary. I'm looking at you, pull configuration registers.
 
+## CCS on Linux
+
+I'm using a Windows 10 machine for most of this course, but set up CCS on a Linux machine as well, as that is the daily driver in my home office.
+
+Note that the following install scripts must be run using `sudo` to allow the In-Circuit Debugger to work (substitute current CCS install folder as necessary):
+
+- `~/ti/ccs1031/ccs/install_scripts/install_drivers.sh`
+- `~/ti/ccs1031/ccs/install_scripts/ti_permissions_install.sh`
+
+I had to reboot to get the changes to take effect and flash the dev board.
+
 ## The Code
 
 Most of the code contained in this repository will be identical to that accessible via the course link above. However, the TM4C1294 dev board has four single-color LEDs vs an RGB LED, so the ports/bits used will be slightly different.
@@ -89,3 +100,8 @@ It is not necessary to explicitly add new files to the project when using CCS (E
 
 ### Lesson 10 - Stack Overflow and Other Pitfalls of Functions
 
+Unfortunately, CCS does not have a nice stack viewer. There is a "Stack Usage" view available when using the TI compiler. I tried it briefly and was unable to actually see anything useful, but I did not try too hard as I'm still trying to use the GCC tools exclusively.
+
+It's still possible to use the Memory Browser to view the stack by examining the region pointed to by the Stack Pointer (SP) register. The "call stack" is shown in the "Debug" window, not quite as nicely as shown in the video using IAR EWARM, but it's there.
+
+Newer versions of CCS do not appear to have a simple way to set heap and stack size in the linker file. They can be set by adding `-heap=0` and/or `-stack=1024` to the "Miscellaneous" flags in the linker settings.
