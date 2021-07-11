@@ -13,16 +13,27 @@
 
 unsigned fact(unsigned n);
 
+int * swap(int *x, int *y);
+int * swap(int *x, int *y) {
+    static int tmp[2];
+    tmp[0] = *x;
+    tmp[1] = *y;
+    *x = tmp[1];
+    *y = tmp[0];
+
+    return tmp;
+}
+
 int main(void)
 {
-    unsigned volatile x;
+    unsigned volatile z;
 
-    x = fact(0U);
-    x = 2U + 3U * fact(1U);
-    x = fact(5U);
+    z = fact(0U);
+    z = 2U + 3U * fact(1U);
+    z = fact(5U);
     (void)fact(5U);
 
-    delay(x);
+    delay(z);
 
     // Turn on GPIO-F and -N blocks
     SYSCTL_RCGCGPIO_R = 0x1020;
@@ -35,19 +46,23 @@ int main(void)
     GPIO_PORTF_DIR_R |= (D3 | D4);
     GPIO_PORTF_DEN_R |= (D3 | D4);
 
+    int x = 1e6;
+    int y = 1e6/2;
+
     while(1) {
+        int *p = swap(&x, &y);
         // Recall that bits 9:2 of address act as mask
         // for bits 7:0 of DATA. Yes, it's weird, but
         // it is abstracted now.
         GPIO_PORTN_DATA_BITS_R[D1 | D2] = D1;
         GPIO_PORTF_DATA_BITS_R[D3 | D4] = D3;
 
-        delay(1e6);
+        delay(p[0]);
 
         GPIO_PORTN_DATA_BITS_R[D1 | D2] = D2;
         GPIO_PORTF_DATA_BITS_R[D3 | D4] = D4;
 
-        delay(1e6);
+        delay(p[1]);
     }
 
     //	return 0;

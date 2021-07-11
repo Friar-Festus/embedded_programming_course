@@ -12,7 +12,7 @@ Much of the nitty-gritty of e.g. GPIO manipulation is hidden behind vendor-provi
 
 I'm using a Windows 10 machine for most of this course, but set up CCS on a Linux machine as well, as that is the daily driver in my home office.
 
-Note that the following install scripts must be run using `sudo` to allow the In-Circuit Debugger to work (substitute current CCS install folder as necessary):
+In order to flash the board, the following install scripts must be run using `sudo` to allow the In-Circuit Debugger to work (substitute current CCS install folder as necessary):
 
 - `~/ti/ccs1031/ccs/install_scripts/install_drivers.sh`
 - `~/ti/ccs1031/ccs/install_scripts/ti_permissions_install.sh`
@@ -105,3 +105,7 @@ Unfortunately, CCS does not have a nice stack viewer. There is a "Stack Usage" v
 It's still possible to use the Memory Browser to view the stack by examining the region pointed to by the Stack Pointer (SP) register. The "call stack" is shown in the "Debug" window, not quite as nicely as shown in the video using IAR EWARM, but it's there.
 
 Newer versions of CCS do not appear to have a simple way to set heap and stack size in the linker file. They can be set by adding `-heap=0` and/or `-stack=1024` to the "Miscellaneous" flags in the linker settings.
+
+Differences between my final code and the video:
+- I have left the factorial lines in place.
+- I moved the x & y initializers above the `while (1)` loop. I think this makes the LED blink sequence slightly more interesting as the delay values are being swapped on each iteration of the loop.

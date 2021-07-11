@@ -1,8 +1,7 @@
 #include "delay.h"
 
-void delay(int iter) {
-    volatile int counter = 0;
-    while (counter < iter) {
-        ++counter;
+void delay(volatile int iter) {
+    while (iter > 0) {
+        --iter;
     }
 }

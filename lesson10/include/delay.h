@@ -8,7 +8,7 @@
 #ifndef INCLUDE_DELAY_H_
 #define INCLUDE_DELAY_H_
 
-void delay(int iter);
+void delay(volatile int iter);
 
 
 
