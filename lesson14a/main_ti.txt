@@ -1,0 +1,35 @@
+
+c:\embedded_programming\ccs\lesson14a\Debug\lesson13a.out:	file format elf32-littlearm
+
+Sections:
+Idx Name              Size     VMA      Type
+  0                   00000000 00000000 
+  1 .intvecs          00000208 00000000 DATA
+  2 .text             000001ec 00000208 TEXT
+  3 .const            00000000 00000000 
+  4 .cinit            00000014 000003f8 DATA
+  5 .pinit            00000000 00000000 
+  6 .init_array       00000000 00000000 BSS
+  7 .vtable           00000000 00000000 
+  8 .data             00000000 00000000 BSS
+  9 .bss              00000024 20000200 BSS
+ 10 .sysmem           00000000 00000000 
+ 11 .stack            00000200 20000000 BSS
+ 12 .TI.noinit        00000000 00000000 
+ 13 .TI.persistent    00000000 00000000 
+ 14 __llvm_prf_cnts   00000000 20000000 BSS
+ 15 .debug_info       00003c12 00000000 
+ 16 .debug_line       00000a35 00000000 
+ 17 .debug_frame      0000030c 00000000 
+ 18 .debug_abbrev     00000948 00000000 
+ 19 .debug_str        0000147f 00000000 
+ 20 .debug_aranges    00000120 00000000 
+ 21 .debug_pubnames   000001cc 00000000 
+ 22 .debug_pubtypes   0000096a 00000000 
+ 23 Veneer$$CMSE      00000000 00000000 
+ 24 .ARM.attributes   00000058 00000000 
+ 25 .symtab           00001110 00000000 
+ 26 .TI.section.flags 0000001a 00000000 
+ 27 .strtab           000005a1 00000000 
+ 28 .shstrtab         00000133 00000000 
+
